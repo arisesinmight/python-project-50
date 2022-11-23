@@ -2,7 +2,6 @@ from gendiff.packages.gendiff import generate_diff
 import json
 
 
-
 def test_gendiff():
     file1 = json.load(open('files/file1.json'))
     file2 = json.load(open('files/file2.json'))

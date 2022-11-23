@@ -19,11 +19,12 @@ def generate_diff(file1, file2):
         elif key in file2 and key not in file1:
             diff += f"  + {key}: {format(file2[key])}\n"
         elif file1[key] != file2[key]:
-            diff += f"  - {key}: {format(file1[key])}\n  + {key}: {format(file2[key])}\n"
+            diff += f"  - {key}: {format(file1[key])}\n\
+  + {key}: {format(file2[key])}\n"
         elif file1[key] == file2[key]:
             diff += f"    {key}: {format(file1[key])}\n"
     return '{\n' + diff + '}'
 
 
 if __name__ == '__main__':
-    generate_diff(file1, file2)
+    generate_diff()
