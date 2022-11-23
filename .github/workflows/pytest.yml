@@ -1,4 +1,4 @@
-name: test-coverage
+name: pytest
 
 on: push
 
@@ -8,11 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
+      - name: Set up Python
       - uses: actions/setup-python@v4
         with:
-         python-version: '3.10' 
-      - uses: snok/install-poetry@master
+          python-version: '3.10' 
+      - name: instal poetry and dependencies
+        run: |
+          pip install poetry
+          make install
+      - name: Run linter and pytest
       - run: make lint
       - run: make pytest
-      - run: make coverage
