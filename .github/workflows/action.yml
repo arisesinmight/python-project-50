@@ -14,12 +14,8 @@ jobs:
           python-version: '3.10' 
       - uses: snok/install-poetry@master
       - run: make install
-
-      - name: lint and tests
       - run: make lint
       - run: make pytest
-
-      - name: test coverage
       - uses: paambaati/codeclimate-action@v2.2.4
         if: github.ref_name == 'main'
         env:
