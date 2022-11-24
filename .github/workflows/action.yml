@@ -18,8 +18,9 @@ jobs:
       - name: install dependencies
         run: make install
       - name: run linter and tests
-        run: make lint
-        run: make pytest
+        run:  |
+          make lint
+          make pytest
       - name: test coverage  
         uses: paambaati/codeclimate-action@v3.2.0
         if: github.ref_name == 'main'
