@@ -24,4 +24,3 @@ def generate_diff(file1, file2):
         elif file1[key] == file2[key]:
             diff += f"    {key}: {format(file1[key])}\n"
     return '{\n' + diff + '}'
-
