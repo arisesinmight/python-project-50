@@ -25,6 +25,3 @@ def generate_diff(file1, file2):
             diff += f"    {key}: {format(file1[key])}\n"
     return '{\n' + diff + '}'
 
-
-if __name__ == '__main__':
-    generate_diff()

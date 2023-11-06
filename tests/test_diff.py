@@ -1,4 +1,4 @@
-from gendiff.packages.gendiff import generate_diff
+from gendiff.packages.generate_diff import generate_diff
 import json
 from tests.fixtures.result_json import RESULT
 
