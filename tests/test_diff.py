@@ -1,9 +1,18 @@
 from gendiff.packages.generate_diff import generate_diff
+from tests.fixtures.result_plain import result
 import json
-from tests.fixtures.result_json import result
+import yaml
+import pytest
 
 
-def test_gendiff():
-    file1 = json.load(open('files/file1.json'))
-    file2 = json.load(open('files/file2.json'))
-    assert generate_diff(file1, file2) == result
+@pytest.mark.parametrize(
+    "input_file1, input_file2",
+    [
+        (json.load(open('files/file1.json')), json.load(open('files/file2.json'))),
+        (yaml.load(open('files/file1.yaml'), Loader=yaml.FullLoader),
+         yaml.load(open('files/file2.yaml'), Loader=yaml.FullLoader))
+    ]
+)
+
+def test_gendiff(input_file1, input_file2):
+    assert generate_diff(input_file1, input_file2) == result

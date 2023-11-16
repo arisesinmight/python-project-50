@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hexlet-code"
-version = "0.2.3"
+version = "0.3.2"
 description = ""
 authors = ["Pavel Ilchenko <arisesinmight@gmail.com>"]
 readme = "README.md"
@@ -12,6 +12,7 @@ packages = [
 python = "^3.10"
 argparse = "^1.4.0"
 pytest-cov = "^4.0.0"
+pyyaml = "^6.0.1"
 
 [tool.poetry.scripts]
 gendiff = "gendiff.scripts.gendiff:main"
