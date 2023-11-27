@@ -13,10 +13,8 @@ two configuration files and shows a difference.')
     if str(args.first_file)[-5:] == ".json":
         file1 = json.load(open(args.first_file))
         file2 = json.load(open(args.second_file))
-    elif str(args.first_file)[-5:] == ".yaml":
-        file1 = yaml.load(open('files/file1.yaml'), Loader=yaml.FullLoader)
-        file2 = yaml.load(open('files/file2.yaml'), Loader=yaml.FullLoader)
-    elif str(args.first_file)[-4:] == ".yml":
-        file1 = yaml.load(open('files/file1.yml'), Loader=yaml.FullLoader)
-        file2 = yaml.load(open('files/file2.yml'), Loader=yaml.FullLoader)
+    elif str(args.first_file)[-5:] == ".yaml"\
+            or str(args.first_file)[-4:] == ".yml":
+        file1 = yaml.load(open(args.first_file), Loader=yaml.FullLoader)
+        file2 = yaml.load(open(args.second_file), Loader=yaml.FullLoader)
     return file1, file2

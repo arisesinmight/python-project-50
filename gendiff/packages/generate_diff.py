@@ -1,11 +1,4 @@
-def format(value):
-    if value is True:
-        return 'true'
-    elif value is False:
-        return 'false'
-    elif value is None:
-        return 'null'
-    return value
+from gendiff.packages import stylish
 
 
 def generate_diff(file1, file2):
@@ -15,12 +8,11 @@ def generate_diff(file1, file2):
     all_keys = sorted(set(keys1 + keys2))
     for key in all_keys:
         if key in file1 and key not in file2:
-            diff += f"  - {key}: {format(file1[key])}\n"
+            diff += stylish.removed_line(key, file1[key])
         elif key in file2 and key not in file1:
-            diff += f"  + {key}: {format(file2[key])}\n"
+            diff += stylish.added_line(key, file2[key])
         elif file1[key] != file2[key]:
-            diff += f"  - {key}: {format(file1[key])}\n\
-  + {key}: {format(file2[key])}\n"
+            diff += stylish.changed_line(key, file1[key], file2[key])
         elif file1[key] == file2[key]:
-            diff += f"    {key}: {format(file1[key])}\n"
+            diff += stylish.not_changed_line(key, file1[key])
     return '{\n' + diff + '}'
