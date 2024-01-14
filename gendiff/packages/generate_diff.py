@@ -1,4 +1,4 @@
-from gendiff.packages import stylish
+from gendiff.packages.stylish import built_changes
 
 
 def generate_diff(file1, file2):
@@ -7,12 +7,11 @@ def generate_diff(file1, file2):
     keys2 = list(file2.keys())
     all_keys = sorted(set(keys1 + keys2))
     for key in all_keys:
-        if key in file1 and key not in file2:
-            diff += stylish.removed_line(key, file1[key])
-        elif key in file2 and key not in file1:
-            diff += stylish.added_line(key, file2[key])
-        elif file1[key] != file2[key]:
-            diff += stylish.changed_line(key, file1[key], file2[key])
-        elif file1[key] == file2[key]:
-            diff += stylish.not_changed_line(key, file1[key])
-    return '{\n' + diff + '}'
+        if key in file1 and key in file2 \
+                and type(file1[key]) is dict and type(file2[key]) is dict:
+            diff += generate_diff(file1[key], file2[key])
+        elif key in file1 and type(file1[key]) is dict:
+            diff += str(file1[key])
+        else:
+            diff += built_changes(key, file1, file2)
+    return diff
