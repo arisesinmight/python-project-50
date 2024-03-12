@@ -16,4 +16,5 @@ def open_files():
     elif args.second_file.endswith('.yaml')\
             or args.second_file.endswith('.yml'):
         file2 = yaml.load(open(args.second_file), Loader=yaml.FullLoader)
+
     return file1, file2
