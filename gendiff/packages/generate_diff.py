@@ -1,5 +1,5 @@
 from gendiff.packages import stylish
-from gendiff.packages.ast import search_for_differences
+from gendiff.packages.abstr_ling_tree import search_for_differences
 
 
 def generate_diff(file1, file2, formatter=stylish):

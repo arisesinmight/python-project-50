@@ -10,7 +10,6 @@ def open_files():
     elif args.first_file.endswith('.yaml')\
             or args.first_file.endswith('.yml'):
         file1 = yaml.load(open(args.first_file), Loader=yaml.FullLoader)
-
     if args.second_file.endswith('.json'):
         file2 = json.load(open(args.second_file))
     elif args.second_file.endswith('.yaml')\
