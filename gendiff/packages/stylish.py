@@ -8,14 +8,18 @@ def format_bools(value):
     return value
 
 
+def build_indentation(depth, prim_indentation="    "):
+    def cut_symbol_used_space(space_string):
+        return space_string[0:-2]
+    return cut_symbol_used_space(prim_indentation * depth)
+
+
 def make_removed(key, value, depth):
-    indentation = "  " * depth
-    return f"{indentation}- {key}: {format_bools(value)}\n"
+    return f"{build_indentation(depth)}- {key}: {format_bools(value)}\n"
 
 
 def make_added(key, value, depth):
-    indentation = "  " * depth
-    return f'{indentation}+ {key}: {format_bools(value)}\n'
+    return f'{build_indentation(depth)}+ {key}: {format_bools(value)}\n'
 
 
 def make_changed_value(key, old_value, new_value, depth):
@@ -23,18 +27,11 @@ def make_changed_value(key, old_value, new_value, depth):
 
 
 def make_not_changed(key, value, depth):
-    indentation = "  " * depth
-    return f'{indentation}  {key}: {format_bools(value)}\n'
+    return f'{build_indentation(depth)}  {key}: {format_bools(value)}\n'
 
 
 def make_nested(key, depth):
-    indentation = "  " * depth
-    return f'{indentation}  {key}:'
-
-
-def make_children(key, depth):
-    indentation = "  " * depth
-    return f'{indentation}  {key}: {draw_changes(key, depth)}\n'
+    return f'{build_indentation(depth)}  {key}:'
 
 
 def draw_changes(diff_dict, depth=1):
@@ -70,10 +67,8 @@ def draw_changes(diff_dict, depth=1):
             )
 
         if diff_dict[key]['type'] == 'nested':
-            stringed_diff += make_nested(
-                make_children(
+            stringed_diff += make_nested(key, depth) + draw_changes(
                     diff_dict[key]['value'], depth=depth+1
-                ), depth
-            )
+                )
 
     return '{\n' + stringed_diff + '}'

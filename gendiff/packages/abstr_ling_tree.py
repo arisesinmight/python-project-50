@@ -39,9 +39,6 @@ def search_for_differences(dict1, dict2):
     for key in nested:
         diff_dict[key] = {
             'type': 'nested',
-            'value': dict1[key].keys() #раньше сдесь вызывалась рекурсия
+            'value': search_for_differences(dict1[key], dict2[key])
         }
     return diff_dict
-''' `nested`(вложенная вершина) -- ключ присутствует в двух словарях 
-и оба значения по этому ключу сами являются словарями. В значении 
-такой вершины будет лежать список **потомков.**'''
