@@ -12,7 +12,8 @@ def build_indentation(place, depth, prim_indentation="    "):
     if place == 'start':
         return (prim_indentation * depth)[0:-2]
     if place == 'end':
-        return (prim_indentation * (depth -1))
+        return (prim_indentation * (depth - 1))
+
 
 def draw_nested_value(value, depth):
     entry = ''
@@ -22,15 +23,16 @@ def draw_nested_value(value, depth):
         if not isinstance(key, dict):
             entry += f'{make_not_changed(key, value[key], depth)}'
         else:
-            entry += f'\n{build_indentation('end', depth)}' + draw_nested_value(value[key], depth=depth + 1)
+            entry += f'\n{build_indentation('end', depth)}'\
+                + draw_nested_value(value[key], depth=depth + 1)
     return '{' + entry + f'\n{build_indentation('end', depth)}' + '}'
 
 
-def make_removed(key, value, depth): 
+def make_removed(key, value, depth):
     if type(value) is not dict:
         string_entry = format_bools(value)
     else:
-        string_entry = draw_nested_value(value, depth=depth+1)
+        string_entry = draw_nested_value(value, depth=depth + 1)
     return f'\n{build_indentation('start', depth)}- {key}: {string_entry}'
 
 
@@ -38,7 +40,7 @@ def make_added(key, value, depth):
     if type(value) is not dict:
         string_entry = format_bools(value)
     else:
-        string_entry = draw_nested_value(value, depth=depth+1)
+        string_entry = draw_nested_value(value, depth=depth + 1)
     return f'\n{build_indentation('start', depth)}+ {key}: {string_entry}'
 
 
@@ -46,12 +48,13 @@ def make_not_changed(key, value, depth):
     if type(value) is not dict:
         string_entry = format_bools(value)
     else:
-        string_entry = draw_nested_value(value, depth=depth+1)
+        string_entry = draw_nested_value(value, depth=depth + 1)
     return f'\n{build_indentation('start', depth)}  {key}: {string_entry}'
 
 
 def make_changed_value(key, old_value, new_value, depth):
-    return make_removed(key, old_value, depth) + make_added(key, new_value, depth)
+    return make_removed(key, old_value, depth)\
+        + make_added(key, new_value, depth)
 
 
 def make_nested_key(key, depth):
@@ -91,8 +94,7 @@ def draw_changes(diff_dict, depth=1):
             )
 
         if diff_dict[key]['type'] == 'nested':
-            stringed_diff += make_nested_key(key, depth) + draw_changes(
-                    diff_dict[key]['value'], depth=depth+1
-                )
-            
+            stringed_diff += make_nested_key(key, depth)\
+                + draw_changes(diff_dict[key]['value'], depth=depth + 1)
+
     return '{' + stringed_diff + '\n' + build_indentation('end', depth) + '}'

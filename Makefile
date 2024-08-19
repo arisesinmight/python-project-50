@@ -3,8 +3,13 @@ install:
 	
 gendiff:
 	poetry run gendiff
+
+selfcheck:
+	poetry check
+
+check: selfcheck test lint
 	
-build:
+build: check
 	poetry build
 	
 publish:
