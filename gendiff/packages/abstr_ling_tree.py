@@ -1,15 +1,14 @@
 def search_for_differences(dict1, dict2):
     diff_dict = {}
 
-    keys1 = set(dict1.keys())
-    keys2 = set(dict2.keys())
+    keys1 = dict1.keys()
+    keys2 = dict2.keys()
+
     added_keys = keys2 - keys1
     removed_keys = keys1 - keys2
-
     nested_dicts1 = set(filter(lambda x: isinstance(dict1[x], dict), keys1))
     nested_dicts2 = set(filter(lambda x: isinstance(dict2[x], dict), keys2))
     nested = nested_dicts1 & nested_dicts2
-
     plain_stable_keys = (keys1 & keys2) - nested
 
     for key in added_keys:
