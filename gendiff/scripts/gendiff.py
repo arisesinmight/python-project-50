@@ -4,8 +4,8 @@ from gendiff.packages.generate_diff import generate_diff
 
 
 def main():
-    file1, file2 = open_files()
-    return print(generate_diff(file1, file2))
+    file1, file2, formatter = open_files()
+    return print(generate_diff(file1, file2, formatter))
 
 
 if __name__ == '__main__':
