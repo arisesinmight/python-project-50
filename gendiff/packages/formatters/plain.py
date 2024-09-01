@@ -1,37 +1,55 @@
-from gendiff.packages.formatters.common_functions import format_bools
+def format_value(value):
+    if type(value) is dict:
+        return '[complex value]'
+    if value is True:
+        return "true"
+    elif value is False:
+        return "false"
+    elif value is None:
+        return "null"
+    return f"'{value}'"
 
 
-def set_string(path, changes, *values):
-    if changes == "not_changed":
-        return
+def set_string(path, changes, value=0, old_value=0, new_value=0):
 
     if changes == "removed":
         changed = "removed"
 
-    if changes == "added":
-        changed = f'added with value: {format_bools(values)}'
+    elif changes == "added":
+        changed = f'added with value: {format_value(value)}'
 
-    if changes == "changed":
-        changed = f'updated. From {format_bools(values[0])} to {format_bools(values[1])}'
+    elif changes == "changed":
+        changed = f'updated. From \
+{format_value(old_value)} to \
+{format_value(new_value)}'
 
+    else:
+        return ''
     return f'Property {path} was {changed}\n'
 
 
-def draw_changes(diff_dict, key_path=''):
+def draw_changes(diff_dict, path=[]):
     stringed_diff = ""
     keys = sorted(diff_dict.keys())
-
     for key in keys:
-        key_path += str(key)
-        if not isinstance(key, dict):
+        path.append(key)
+        stringed_path = f"'{'.'.join(path)}'"
+        if diff_dict[key]["type"] == "changed":
             stringed_diff += set_string(
-                key_path,
+                stringed_path,
                 diff_dict[key]["type"],
-                diff_dict[key]["value"],
-                diff_dict[key]["old_value"],
-                diff_dict[key]["new_value"]
+                old_value=diff_dict[key]["old_value"],
+                new_value=diff_dict[key]["new_value"]
             )
-        else:
-            stringed_diff += draw_changes(diff_dict[key], key_path=key_path + f'.{key}')
-    return stringed_diff
+        elif diff_dict[key]["type"] != "nested":
+            stringed_diff += set_string(
+                stringed_path,
+                diff_dict[key]["type"],
+                value=diff_dict[key]["value"],
+            )
+        elif diff_dict[key]["type"] == "nested":
+            stringed_diff += draw_changes(diff_dict[key]["value"], path=[key])
 
+        path.pop()
+
+    return stringed_diff

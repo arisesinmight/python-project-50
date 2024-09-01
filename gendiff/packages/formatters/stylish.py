@@ -1,4 +1,11 @@
-from gendiff.packages.formatters.common_functions import format_bools
+def format_bools(value):
+    if value is True:
+        return "true"
+    elif value is False:
+        return "false"
+    elif value is None:
+        return "null"
+    return value
 
 
 def build_indentation(place, depth, prim_indentation="    "):
@@ -10,7 +17,7 @@ def build_indentation(place, depth, prim_indentation="    "):
 
 def draw_nested_value(value, depth):
     entry = ""
-    keys = value.keys()
+    keys = sorted(value.keys())
 
     for key in keys:
         if not isinstance(key, dict):

@@ -1,4 +1,16 @@
-nested_dict_result = '''{
+stylish_plain_result = \
+'''{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}'''
+
+
+stylish_nested_result = \
+'''{
     common: {
       + follow: false
         setting1: Value 1

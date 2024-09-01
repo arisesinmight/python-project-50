@@ -4,7 +4,7 @@ import yaml
 import json
 
 
-def open_files():
+def set_arguments():
     args = parse_data()
 
     if args.first_file.endswith('.json'):
