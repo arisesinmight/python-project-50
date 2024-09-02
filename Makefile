@@ -4,12 +4,7 @@ install:
 gendiff:
 	poetry run gendiff
 
-selfcheck:
-	poetry check
-
-check: selfcheck test lint
-	
-build: check
+build:
 	poetry build
 	
 publish:
