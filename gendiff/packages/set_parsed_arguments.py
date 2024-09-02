@@ -1,5 +1,5 @@
 from gendiff.packages.parser import parse_data
-from gendiff.packages.formatters import stylish, plain
+from gendiff.packages.formatters import stylish, plain, json_data
 import yaml
 import json
 
@@ -21,6 +21,9 @@ def set_arguments():
 
     if args.format == 'plain':
         formatter = plain
+    elif args.format == 'json':
+        formatter = json_data
+
     else:
         formatter = stylish
 
