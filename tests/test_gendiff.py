@@ -1,7 +1,8 @@
 from gendiff.packages.generate_diff import generate_diff
 from tests.fixtures.result_plain import plain_nested_result
 from tests.fixtures.result_stylish import stylish_plain_result, stylish_nested_result
-from gendiff.packages.formatters import stylish, plain
+from tests.fixtures.result_json import json_nested_result
+from gendiff.packages.formatters import stylish, plain, json_data
 import json
 import yaml
 import pytest
@@ -34,7 +35,16 @@ import pytest
         (yaml.load(open('tests/fixtures/files/nested_file1.yaml'), Loader=yaml.FullLoader),
          yaml.load(open('tests/fixtures/files/nested_file2.yaml'), Loader=yaml.FullLoader),
          plain_nested_result,
-         plain)
+         plain),
+
+        (json.load(open('tests/fixtures/files/nested_file1.json')),
+         json.load(open('tests/fixtures/files/nested_file2.json')),
+         json_nested_result,
+         json_data),
+        (yaml.load(open('tests/fixtures/files/nested_file1.yaml'), Loader=yaml.FullLoader),
+         yaml.load(open('tests/fixtures/files/nested_file2.yaml'), Loader=yaml.FullLoader),
+         json_nested_result,
+         json_data)
 
     ]
 )

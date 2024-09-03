@@ -2,5 +2,4 @@ import json
 
 
 def draw_changes(diff_dict):
-    json_data = json.dumps(diff_dict)
-    return json_data
+    return json.dumps(diff_dict, indent=2, sort_keys=True)
