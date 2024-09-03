@@ -7,6 +7,8 @@ def format_value(value):
         return "false"
     elif value is None:
         return "null"
+    elif value == 0:
+        return "0"
     return f"'{value}'"
 
 
