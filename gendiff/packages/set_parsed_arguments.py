@@ -23,7 +23,6 @@ def set_arguments():
         formatter = plain
     elif args.format == 'json':
         formatter = json_data
-
     else:
         formatter = stylish
 
