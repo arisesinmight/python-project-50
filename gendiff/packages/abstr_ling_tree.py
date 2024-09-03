@@ -1,8 +1,10 @@
 def search_for_differences(dict1, dict2):
     diff_dict = {}
-
-    keys1 = dict1.keys()
-    keys2 = dict2.keys()
+    if type(dict1) is dict and type(dict2) is dict:
+        keys1 = dict1.keys()
+        keys2 = dict2.keys()
+    else:
+        return diff_dict
 
     added_keys = keys2 - keys1
     removed_keys = keys1 - keys2
