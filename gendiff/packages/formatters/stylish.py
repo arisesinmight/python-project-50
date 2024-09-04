@@ -5,7 +5,7 @@ def format_bools(value):
         return "false"
     elif value is None:
         return "null"
-    elif value is ' ':
+    elif value == ' ':
         return ''
     return value
 
