@@ -60,4 +60,4 @@ hex_stylish_result = '''{
       - type: bas
       + type: bar
     }
-}''' #noqa: W291
+}'''  # noqa: W291
