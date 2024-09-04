@@ -1,29 +1,26 @@
-from gendiff.packages.parser import parse_data
 from gendiff.packages.formatters import stylish, plain, json_data
 import yaml
 import json
 
 
-def set_arguments():
-    args = parse_data()
+def set_arguments(first_file, second_file, formatter):
+    if first_file.endswith('.json'):
+        file1 = json.load(open(first_file))
+    elif first_file.endswith('.yaml')\
+            or first_file.endswith('.yml'):
+        file1 = yaml.load(open(first_file), Loader=yaml.FullLoader)
 
-    if args.first_file.endswith('.json'):
-        file1 = json.load(open(args.first_file))
-    elif args.first_file.endswith('.yaml')\
-            or args.first_file.endswith('.yml'):
-        file1 = yaml.load(open(args.first_file), Loader=yaml.FullLoader)
+    if second_file.endswith('.json'):
+        file2 = json.load(open(second_file))
+    elif second_file.endswith('.yaml')\
+            or second_file.endswith('.yml'):
+        file2 = yaml.load(open(second_file), Loader=yaml.FullLoader)
 
-    if args.second_file.endswith('.json'):
-        file2 = json.load(open(args.second_file))
-    elif args.second_file.endswith('.yaml')\
-            or args.second_file.endswith('.yml'):
-        file2 = yaml.load(open(args.second_file), Loader=yaml.FullLoader)
-
-    if args.format == 'plain':
-        formatter = plain
-    elif args.format == 'json':
-        formatter = json_data
+    if formatter == 'plain':
+        _formatter = plain
+    elif formatter == 'json':
+        _formatter = json_data
     else:
-        formatter = stylish
+        _formatter = stylish
 
-    return file1, file2, formatter
+    return file1, file2, _formatter

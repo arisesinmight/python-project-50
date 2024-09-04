@@ -4,69 +4,66 @@ from tests.fixtures.result_stylish import stylish_plain_result, stylish_nested_r
 from tests.fixtures.result_json import json_nested_result
 from tests.fixtures.hex_result_plain import hex_plain_result
 from tests.fixtures.hex_result_stylish import hex_stylish_result
-from gendiff.packages.formatters import stylish, plain, json_data
-import json
-import yaml
 import pytest
 
 
 @pytest.mark.parametrize(
     "input_file1, input_file2, expected_result, formatter",
     [
-        (json.load(open('tests/fixtures/files/file1.json')),
-         json.load(open('tests/fixtures/files/file2.json')),
+        ('tests/fixtures/files/file1.json',
+         'tests/fixtures/files/file2.json',
          stylish_plain_result,
-         stylish),
-        (yaml.load(open('tests/fixtures/files/file1.yaml'), Loader=yaml.FullLoader),
-         yaml.load(open('tests/fixtures/files/file2.yaml'), Loader=yaml.FullLoader),
+         'stylish'),
+        ('tests/fixtures/files/file1.yaml',
+         'tests/fixtures/files/file2.yaml',
          stylish_plain_result,
-         stylish),
+         'stylish'),
 
-        (json.load(open('tests/fixtures/files/nested_file1.json')),
-         json.load(open('tests/fixtures/files/nested_file2.json')),
+        ('tests/fixtures/files/nested_file1.json',
+         'tests/fixtures/files/nested_file2.json',
          stylish_nested_result,
-         stylish),
-        (json.load(open('tests/fixtures/files/hex_file1.json')),
-         json.load(open('tests/fixtures/files/hex_file2.json')),
+         'stylish'),
+        ('tests/fixtures/files/hex_file1.json',
+         'tests/fixtures/files/hex_file2.json',
          hex_stylish_result,
-         stylish),
+         'stylish'),
 
-        (yaml.load(open('tests/fixtures/files/nested_file1.yaml'), Loader=yaml.FullLoader),
-         yaml.load(open('tests/fixtures/files/nested_file2.yaml'), Loader=yaml.FullLoader),
+        ('tests/fixtures/files/nested_file1.yaml',
+         'tests/fixtures/files/nested_file2.yaml',
          stylish_nested_result,
-         stylish),
-        (yaml.load(open('tests/fixtures/files/hex_file1.yml'), Loader=yaml.FullLoader),
-         yaml.load(open('tests/fixtures/files/hex_file2.yml'), Loader=yaml.FullLoader),
+         'stylish'),
+        ('tests/fixtures/files/hex_file1.yml',
+         'tests/fixtures/files/hex_file2.yml',
          hex_stylish_result,
-         stylish),
+         'stylish'),
 
-        (json.load(open('tests/fixtures/files/nested_file1.json')),
-         json.load(open('tests/fixtures/files/nested_file2.json')),
+        ('tests/fixtures/files/nested_file1.json',
+         'tests/fixtures/files/nested_file2.json',
          plain_nested_result,
-         plain),
-        (json.load(open('tests/fixtures/files/hex_file1.json')),
-         json.load(open('tests/fixtures/files/hex_file2.json')),
+         'plain'),
+        ('tests/fixtures/files/hex_file1.json',
+         'tests/fixtures/files/hex_file2.json',
          hex_plain_result,
-         plain),
+         'plain'),
 
-        (yaml.load(open('tests/fixtures/files/nested_file1.yaml'), Loader=yaml.FullLoader),
-         yaml.load(open('tests/fixtures/files/nested_file2.yaml'), Loader=yaml.FullLoader),
+        ('tests/fixtures/files/nested_file1.yaml',
+         'tests/fixtures/files/nested_file2.yaml',
          plain_nested_result,
-         plain),
-        (yaml.load(open('tests/fixtures/files/hex_file1.yml'), Loader=yaml.FullLoader),
-         yaml.load(open('tests/fixtures/files/hex_file2.yml'), Loader=yaml.FullLoader),
+         'plain'),
+        ('tests/fixtures/files/hex_file1.yml',
+         'tests/fixtures/files/hex_file2.yml',
          hex_plain_result,
-         plain),
+         'plain'),
 
 
-        (json.load(open('tests/fixtures/files/nested_file1.json')),
-         json.load(open('tests/fixtures/files/nested_file2.json')),
+        ('tests/fixtures/files/nested_file1.json',
+         'tests/fixtures/files/nested_file2.json',
          json_nested_result,
-         json_data),
-        (yaml.load(open('tests/fixtures/files/nested_file1.yaml'), Loader=yaml.FullLoader),
-         yaml.load(open('tests/fixtures/files/nested_file2.yaml'), Loader=yaml.FullLoader),
+         'json'),
+        ('tests/fixtures/files/nested_file1.yaml',
+         'tests/fixtures/files/nested_file2.yaml',
          json_nested_result,
-         json_data)
+         'json')
 
     ]
 )
