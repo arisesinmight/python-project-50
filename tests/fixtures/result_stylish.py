@@ -1,5 +1,4 @@
-stylish_plain_result = \
-'''{
+stylish_plain_result = '''{
   - follow: false
     host: hexlet.io
   - proxy: 123.234.53.22
@@ -9,8 +8,7 @@ stylish_plain_result = \
 }'''
 
 
-stylish_nested_result = \
-'''{
+stylish_nested_result = '''{
     common: {
       + follow: false
         setting1: Value 1
@@ -23,7 +21,7 @@ stylish_nested_result = \
         }
         setting6: {
             doge: {
-              - wow: 
+              - wow:
               + wow: so much
             }
             key: value

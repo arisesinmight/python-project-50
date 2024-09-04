@@ -1,5 +1,4 @@
-hex_plain_result = \
-'''Property 'common.follow' was added with value: false
+hex_plain_result = '''Property 'common.follow' was added with value: false
 Property 'common.setting2' was removed
 Property 'common.setting3' was updated. From true to [complex value]
 Property 'common.setting4' was added with value: 'blah blah'
