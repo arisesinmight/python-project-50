@@ -51,4 +51,4 @@ stylish_nested_result = '''{
         }
         fee: 100500
     }
-}'''
+}''' #noqa: W291
