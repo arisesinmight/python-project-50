@@ -1,4 +1,4 @@
-hex_stylish_result = '''{
+{
     common: {
       + follow: false
         setting1: Value 1
@@ -60,4 +60,4 @@ hex_stylish_result = '''{
       - type: bas
       + type: bar
     }
-}'''  # noqa: W291
+}

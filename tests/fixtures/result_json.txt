@@ -1,4 +1,4 @@
-json_nested_result = '''{
+{
   "common": {
     "type": "nested",
     "value": {
@@ -95,4 +95,4 @@ json_nested_result = '''{
       "fee": 100500
     }
   }
-}'''
+}
