@@ -1,10 +1,12 @@
 from gendiff.packages.generate_diff import generate_diff
 import pytest
 
+
 def read(file_path):
     with open(file_path, 'r') as f:
         result = f.read()
     return result
+
 
 @pytest.mark.parametrize(
     "input_file1, input_file2, expected_result, formatter",
