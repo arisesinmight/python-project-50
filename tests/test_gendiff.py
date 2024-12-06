@@ -1,5 +1,5 @@
-from gendiff.packages.generate_diff import generate_diff
 import pytest
+from gendiff.packages.generate_diff import generate_diff
 
 
 def read(file_path):

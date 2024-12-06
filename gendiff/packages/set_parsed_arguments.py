@@ -1,6 +1,7 @@
-from gendiff.packages.formatters import stylish, plain, json_data
-import yaml
 import json
+
+import yaml
+from gendiff.packages.formatters import json_data, plain, stylish
 
 
 def set_arguments(first_file, second_file, formatter):
